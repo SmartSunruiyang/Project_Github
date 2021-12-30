@@ -1,0 +1,48 @@
+import easygui as eg      # 导入GUI框架
+
+#初始化模块
+start_1 = eg.enterbox(msg='输入s开始计算', title='BMI-caculator', default='s', strip=True, image=None, root=None)
+start = str(start_1)
+def caculator():           # 定义判定函数
+    get_height = eg.enterbox(msg='请输入您的身高(cm)', title='BMI-caculator', default='', strip=True, image=None, root=None)
+    height = float(get_height) / 100
+    get_weight = eg.enterbox(msg='请输入您的体重(kg)', title='BMI-caculator', default='', strip=True, image=None, root=None)
+    weight = float(get_weight)
+    get_gender = eg.enterbox(msg='您的性别是？(男/女)', title='BMI-caculator', default='', strip=True, image=None, root=None)
+    gender = str(get_gender)
+    BMI = weight / height ** 2
+    msg = '您的身高为', height, 'm', '您的体重为', weight, 'kg', '您的性别为', gender,'您的BMI值为', BMI, '体重过轻'
+    msg2 = '您的身高为', height, 'm', '您的体重为', weight, 'kg', '您的性别为', gender, '您的BMI值为', BMI, '体重适中'
+    msg3 = '您的身高为', height, 'm', '您的体重为', weight, 'kg', '您的性别为', gender, '您的BMI值为', BMI, '体重过重'
+    msg4 = '您的身高为', height, 'm', '您的体重为', weight, 'kg', '您的性别为', gender, '您的BMI值为', BMI, '肥胖'
+    msg5 = '您的身高为', height, 'm', '您的体重为', weight, 'kg', '您的性别为', gender, '您的BMI值为', BMI, '非常肥胖'
+    if gender == '男':
+        if BMI < 20:
+            result = eg.buttonbox(msg=msg, title='BMI-caculator', choices=('Cancel', 'OK'))
+        elif BMI >= 20 and BMI < 25:
+            result = eg.buttonbox(msg=msg2, title='BMI-caculator', choices=('Cancel', 'OK'))
+        elif BMI >= 25 and BMI < 30:
+            result = eg.buttonbox(msg=msg3, title='BMI-caculator', choices=('Cancel', 'OK'))
+        elif BMI >= 30 and BMI < 35:
+            result = eg.buttonbox(msg=msg4, title='BMI-caculator', choices=('Cancel', 'OK'))
+        else:
+            result5 = eg.buttonbox(msg=msg5, title='BMI-caculator', choices=('Cancel', 'OK'))
+    else:
+        if BMI < 19:
+            result = eg.buttonbox(msg=msg, title='BMI-caculator', choices=('Cancel', 'OK'))
+        elif BMI >= 19 and BMI < 24:
+            result = eg.buttonbox(msg=msg2, title='BMI-caculator', choices=('Cancel', 'OK'))
+        elif BMI >= 24 and BMI < 29:
+            result = eg.buttonbox(msg=msg3, title='BMI-caculator', choices=('Cancel', 'OK'))
+        elif BMI >= 29 and BMI < 34:
+            result = eg.buttonbox(msg=msg4, title='BMI-caculator', choices=('Cancel', 'OK'))
+        else:
+            result = eg.buttonbox(msg=msg5, title='BMI-caculator', choices=('Cancel', 'OK'))
+while True:               #无限计算模块
+    if start.lower() == 's' or start.lower() == 'y':
+        caculator()
+        start_1 = eg.enterbox(msg='输入s开始计算', title='BMI-caculator', default='s', strip=True, image=None, root=None)
+        start = str(start_1)
+    else:
+        result = eg.buttonbox(msg='bye~', title='BMI-caculator', choices=('Cancel', 'OK'))
+        exit(0)
